@@ -1,23 +1,73 @@
 <html>
 <head>
-    <title>CSE312 Sample Front End</title>
-    <link rel="stylesheet" type="text/css" href="public/style.css"/>
+    <title>CSE312 Homework App</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
+
 <body onload="welcome();">
 
-<h1>CSE312 Sample Page</h1>
+<div class="title">
+    <h2>CSE312 App</h2>
+</div>
 
-<p id="paragraph">
-    This text is from the HTML file 🙂
-</p>
+<div class="header">
+    <div>
+        <img src="image/eagle.jpg" alt="It's an eagle" class="my_image"/></div>
+    <div>
+        <p id="paragraph">
+            Welcome to CSE312 Social. You're one stop for chat, image sharing, and DMs 🙂
+        </p>
+    </div>
+</div>
 
-<img src="public/image/eagle.jpg" alt="It's an eagle" class="my_image"/>
+
+<div class="contents">
+    <div class="chat">
+        <div id="chat-messages">
+        </div>
+
+        <div class="chat-form">
+            <hr>
+            <label>
+                Chat:
+                <input id="chat-text-box" type="text">
+            </label>
+            <button id="chat-button" onclick="sendChat()">Send</button>
+        </div>
+
+    </div>
+    <div class="user-list">
 
 
-<br/>
-<hr/>
+        Register:
+        <form action="/register" method="post" enctype="application/x-www-form-urlencoded">
+            <label>Username:
+                <input id="reg-form-username" type="text" name="username_reg"/>
+            </label>
+            <br/>
+            <label>Password:&nbsp;
+                <input id="reg-form-pass" type="password" name="password_reg">
+            </label>
+            <input type="submit" value="Post">
+        </form>
+
+        Login:
+        <form action="/login" method="post" enctype="application/x-www-form-urlencoded">
+            <label>Username:
+                <input id="login-form-username" type="text" name="username_login"/>
+            </label>
+            <br/>
+            <label>Password:&nbsp;
+                <input id="login-form-pass" type="password" name="password_login">
+            </label>
+            <input type="submit" value="Post">
+        </form>
 
 
-<script src="public/functions.js"></script>
+    </div>
+</div>
+
+
+<script src="functions.js"></script>
 </body>
 </html>
