@@ -22,6 +22,7 @@ img.post {
 
 .header {
     display: flex;
+    /*justify-content: space-around;*/
     background-color: #F6F1F1;
     color: black;
     height: 17%;
@@ -35,17 +36,32 @@ img.post {
 }
 
 .chat {
+    /*height:100%;*/
     width: 70%;
     background-color: #146C94;
     padding: 20px;
+    /*overflow: scroll;*/
+}
+
+.video-chat {
+    background-color: #158Cb4;
+        padding: 20px;
+
 }
 
 #chat-messages {
     height: 90%;
+    /*width: 70%;*/
+    /*background-color: aqua;*/
+    /*padding: 20px;*/
     overflow: scroll;
 }
 
 .chat-form {
+    /*width: 70%;*/
+    /*background-color: aqua;*/
+    /*padding: 20px;*/
+    /*overflow: scroll;*/
     height: 30px;
 }
 
@@ -57,4 +73,8 @@ img.post {
 
 .header > div {
     padding: 20px;
+}
+
+.webrtc-video {
+    width: 100%;
 }

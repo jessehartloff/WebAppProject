@@ -1,3 +1,23 @@
+const ws = false;
+let socket = null;
+
+function initWS() {
+    // Establish a WebSocket connection with the server
+    socket = new WebSocket('ws://' + window.location.host + '/websocket');
+
+    // Called whenever data is received from the server over the WebSocket connection
+    socket.onmessage = function (ws_message) {
+        const message = JSON.parse(ws_message.data);
+        const messageType = message.messageType
+        if(messageType === 'chatMessage'){
+            addMessageToChat(message);
+        }else{
+            // send message to WebRTC
+            processMessageAsWebRTC(message, messageType);
+        }
+    }
+}
+
 function deleteMessage(messageId) {
     const request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -34,15 +54,21 @@ function sendChat() {
     const chatTextBox = document.getElementById("chat-text-box");
     const message = chatTextBox.value;
     chatTextBox.value = "";
-    const request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log(this.response);
+    if (ws) {
+        // Using WebSockets
+        socket.send(JSON.stringify({'messageType': 'chatMessage', 'message': message}));
+    } else {
+        // Using AJAX
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log(this.response);
+            }
         }
+        const messageJSON = {"message": message};
+        request.open("POST", "/chat-message");
+        request.send(JSON.stringify(messageJSON));
     }
-    const messageJSON = {"message": message};
-    request.open("POST", "/chat-message");
-    request.send(JSON.stringify(messageJSON));
     chatTextBox.focus();
 }
 
@@ -68,9 +94,20 @@ function welcome() {
         }
     });
 
+
     document.getElementById("paragraph").innerHTML += "<br/>This text was added by JavaScript 😀";
     document.getElementById("chat-text-box").focus();
 
     updateChat();
-    setInterval(updateChat, 2000);
+
+    if (ws) {
+        initWS();
+    } else {
+        const videoElem = document.getElementsByClassName('video-chat')[0];
+        videoElem.parentElement.removeChild(videoElem);
+        setInterval(updateChat, 2000);
+    }
+
+    // use this line to start your video without having to click a button. Helpful for debugging
+    // startVideo();
 }

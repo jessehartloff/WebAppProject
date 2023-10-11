@@ -23,9 +23,13 @@
 
 
 <div class="contents">
+
     <div class="chat">
+
+
         <div id="chat-messages">
         </div>
+
 
         <div class="chat-form">
             <hr>
@@ -37,6 +41,20 @@
         </div>
 
     </div>
+
+    <div class="video-chat">
+        <video class="webrtc-video" id="myVideo" autoplay muted></video>
+        <br/>
+        <video class="webrtc-video" id="otherVideo" autoplay></video>
+
+        <br/>
+        <button onclick="startVideo()">Start My Video</button>
+        <br/>
+        <button onclick="connectWebRTC()">Start Video Chat</button>
+        <br/>
+    </div>
+
+
     <div class="user-list">
 
 
@@ -65,10 +83,20 @@
         </form>
 
 
+        <form action="/profile-pic" id="image-form" method="post" enctype="multipart/form-data">
+            <br/>
+            <label for="form-file">Change profile picture: </label>
+            <input id="form-file" type="file" name="upload">
+            <br/>
+            <input type="submit" value="Post">
+        </form>
+
+
     </div>
 </div>
 
 
 <script src="public/functions.js"></script>
+<script src="public/webrtc.js"></script>
 </body>
 </html>
