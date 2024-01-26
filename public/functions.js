@@ -25,7 +25,7 @@ function deleteMessage(messageId) {
             console.log(this.response);
         }
     }
-    request.open("DELETE", "/chat-message/" + messageId);
+    request.open("DELETE", "/chat-messages/" + messageId);
     request.send();
 }
 
@@ -66,7 +66,7 @@ function sendChat() {
             }
         }
         const messageJSON = {"message": message};
-        request.open("POST", "/chat-message");
+        request.open("POST", "/chat-messages");
         request.send(JSON.stringify(messageJSON));
     }
     chatTextBox.focus();
@@ -83,7 +83,7 @@ function updateChat() {
             }
         }
     }
-    request.open("GET", "/chat-history");
+    request.open("GET", "/chat-messages");
     request.send();
 }
 
@@ -105,7 +105,7 @@ function welcome() {
     } else {
         const videoElem = document.getElementsByClassName('video-chat')[0];
         videoElem.parentElement.removeChild(videoElem);
-        setInterval(updateChat, 2000);
+        setInterval(updateChat, 5000);
     }
 
     // use this line to start your video without having to click a button. Helpful for debugging

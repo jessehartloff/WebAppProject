@@ -4,12 +4,17 @@ body {
     color: white;
 }
 
+.welcome-div {
+    margin-left: 12%;
+}
+
 .my_image {
     height: 100%;
 }
 
 .image_div {
     height: 80%;
+    width: 0;
 }
 
 img.post {
@@ -36,11 +41,9 @@ img.post {
 }
 
 .chat {
-    /*height:100%;*/
     width: 70%;
     background-color: #146C94;
     padding: 20px;
-    /*overflow: scroll;*/
 }
 
 .video-chat {
@@ -51,17 +54,10 @@ img.post {
 
 #chat-messages {
     height: 90%;
-    /*width: 70%;*/
-    /*background-color: aqua;*/
-    /*padding: 20px;*/
     overflow: scroll;
 }
 
 .chat-form {
-    /*width: 70%;*/
-    /*background-color: aqua;*/
-    /*padding: 20px;*/
-    /*overflow: scroll;*/
     height: 30px;
 }
 

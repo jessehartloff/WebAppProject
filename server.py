@@ -1,5 +1,4 @@
 import socketserver
-import sys
 from util.request import Request
 
 
@@ -25,8 +24,6 @@ def main():
     server = socketserver.TCPServer((host, port), MyTCPHandler)
 
     print("Listening on port " + str(port))
-    sys.stdout.flush()
-    sys.stderr.flush()
 
     server.serve_forever()
 
