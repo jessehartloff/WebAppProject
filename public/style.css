@@ -12,6 +12,10 @@ body {
     height: 100%;
 }
 
+.chat_image {
+    width: 100px;
+}
+
 .image_div {
     height: 80%;
     width: 0;
@@ -27,7 +31,6 @@ img.post {
 
 .header {
     display: flex;
-    /*justify-content: space-around;*/
     background-color: #F6F1F1;
     color: black;
     height: 17%;
@@ -48,8 +51,7 @@ img.post {
 
 .video-chat {
     background-color: #158Cb4;
-        padding: 20px;
-
+    padding: 20px;
 }
 
 #chat-messages {
@@ -73,4 +75,5 @@ img.post {
 
 .webrtc-video {
     width: 100%;
+    max-width: 200px;
 }
