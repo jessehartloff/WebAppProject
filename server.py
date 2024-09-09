@@ -1,8 +1,15 @@
 import socketserver
 from util.request import Request
+from util.router import Router
+from util.hello_path import hello_path
 
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
+
+    def __init__(self, request, client_address, server):
+        self.router = Router()
+        self.router.add_route("GET", "/hello", hello_path, True)
+        # TODO: Add your routes here
 
     def handle(self):
         received_data = self.request.recv(2048)
@@ -12,7 +19,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print("--- end of data ---\n\n")
         request = Request(received_data)
 
-        # TODO: Parse the HTTP request and use self.request.sendall(response) to send your response
+        self.router.route_request(request, self)
 
 
 def main():
